@@ -1,0 +1,15 @@
+
+#config port
+server:
+  port: ${SERVICE_PORT:8761}
+
+#dat ten service
+spring:
+  application:
+    name: ${SERVICE_NAME:discovery-service}
+
+#cau hinh registry
+eureka:
+  client:
+    register-with-eureka: false
+    fetch-registry: false
