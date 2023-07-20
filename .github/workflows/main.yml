@@ -37,24 +37,3 @@ jobs:
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
-
-    - name: Set up Expect
-      run: sudo apt-get update && sudo apt-get install -y expect
-
-    - name: Connect to Ubuntu Server
-      env:
-        SERVER_IP: ${{ secrets.UBUNTU_IP }}
-        USERNAME: ${{ secrets.UBUNTU_USERNAME }}
-        PASSWORD: ${{ secrets.UBUNTU_PASSWORD }}
-      run: |
-        expect -c "
-          spawn ssh $env(USERNAME)@$env(SERVER_IP)
-          expect \"password:\"
-          send \"$env(PASSWORD)\r\"
-          interact
-        "
-    - name: CD on folder
-      run: cd /home/vuongtien2942000/compose
-
-    - name: Restart
-      run: docker-compose restart
